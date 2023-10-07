@@ -1,0 +1,239 @@
+.compat-attachment-fields {
+	color: #646970;
+}
+
+.media-frame .compat-item .field {
+	width: 90%;
+}
+
+.thumbwiz-tabs-content,
+.thumbwiz_thumbnail_box {
+	margin: 5px 0;
+}
+
+.thumbwiz_thumbnail_box {
+	position: relative;
+	border: 1px solid #ccc;
+	text-align: center;
+	padding: 5px;
+}
+
+.thumbwiz_chosen_thumbnail_box {
+	border-width: 6px;
+	width: 200px;
+	padding: 0;
+}
+
+.thumbwiz_chosen_thumbnail_box img,
+.thumbwiz_chosen_thumbnail_box canvas {
+	display: block;
+	width: 200px;
+}
+
+.thumbwiz_redraw_thumbnail_box {
+	height: 112px;
+}
+
+.thumbwiz_redraw_thumbnail_box span {
+	margin-top: 45px;
+	display: inline-block;
+}
+
+.thumbwiz_thumbnail_overlay {
+	width: 100%;
+	background: rgba(255, 255, 255, 0.5);
+}
+
+.thumbwiz_save_overlay {
+	position: absolute;
+	top: 70%;
+	font-size: 160%;
+	width: 100%;
+	text-align: center;
+	z-index: 2;
+}
+
+div.thumbwiz_thumbnail_select {
+	text-align:center;
+	display:inline-block;
+}
+
+img.thumbwiz_thumbnail, canvas.thumbwiz_thumbnail {
+	margin:2px;
+	max-width:200px;
+}
+
+.thumbwiz_embedselect {
+	border-left:2px solid #ccc;
+	display:inline;
+	padding-left:8px;
+}
+
+div.thumbwiz_cancel_button {
+	display:inline-block;
+	vertical-align:top;
+	margin-top:7px;
+	padding-left:5px;
+}
+
+.thumbwiz_gray_text {
+color: #a7aaad;
+}
+
+.thumbwiz-thumbtime {
+	max-width: 60%;
+}
+
+.attachment-details.thumbwiz_spinner .settings-save-status {
+	float: none;
+}
+
+.attachment-details.thumbwiz_spinner .settings-save-status .spinner, .attachment-details.thumbwiz_spinner .settings-save-status .saved {
+	float: none;
+}
+
+.thumbwiz_spinner .saved {
+	margin-left:6px;
+}
+
+.attachment-details.thumbwiz_spinner.save-complete .settings-save-status .spinner {
+	display:none;
+}
+
+.attachment-details.thumbwiz_spinner.save-complete .settings-save-status .saved {
+	display:inline-block;
+}
+
+div.thumbwiz_post_meta_boxes {
+	display: inline-block;
+	width: 300px;
+	border: 1px solid #dcdcde;
+	padding: 10px;
+	margin: 5px;
+	vertical-align: top;
+}
+
+.thumbwiz-right-arrow {
+	width: 0;
+	height: 0;
+	border-top: 6px solid transparent;
+	border-bottom: 6px solid transparent;
+	border-left: 10px solid #c3c4c7;
+	display: inline-block;
+	margin-right: 4px;
+}
+
+.thumbwiz-down-arrow {
+	width: 0;
+	height: 0;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 10px solid #bbb;
+	display: inline-block;
+	margin-right: 4px;
+}
+
+.thumbwiz-reveal-thumb-video {
+	cursor:pointer;
+	width: 200px;
+	text-align: left;
+}
+
+.thumbwiz-thumb-video {
+	width: 100%;
+	margin: 5px 0 5px 0;
+	background-color: black;
+}
+
+.mejs-container .thumbwiz-thumb-video {
+	margin-top: 0;
+}
+
+.thumbwiz-video-controls {
+	white-space: nowrap;
+}
+
+.thumbwiz-play-pause {
+	width: 0;
+	height: 0;
+	border-top: 6px solid transparent;
+	border-bottom: 6px solid transparent;
+	border-left: 10px solid #1e8cbe;
+	display: inline-block;
+	cursor: pointer;
+	margin-right: 5px;
+}
+
+.thumbwiz-play-pause.thumbwiz-playing {
+	width: 3px;
+	height: 12px;
+	margin-right: 6px;
+	border-left: 3px solid #1e8cbe;
+	border-right: 3px solid #1e8cbe;
+	border-top: none;
+	border-bottom: none;
+
+}
+
+.thumbwiz-seek-bar
+{
+	display: inline-block;
+	position: relative;
+	width: 89%;
+	height: 10px;
+	background-color: #F5F5F5;
+	border: 1px solid #dfdfdf;
+	cursor: pointer;
+}
+
+.thumbwiz-seek-bar:hover {
+	background: #FAFAFA;
+}
+
+.thumbwiz-seek-bar:hover .thumbwiz-seek-handle {
+	width: 4px;
+	height: 14px;
+	margin-left: -2px;
+	margin-top: -2px;
+}
+
+.thumbwiz-play-progress {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 100%;
+	background-color: rgb(34,113,177);
+}
+
+.thumbwiz-seek-handle {
+	display: block;
+	width: 2px;
+	height: 10px;
+	background: #AFDAED;
+	position: relative;
+}
+
+td.media-icon img {
+	width: auto;
+}
+
+.thumbwiz-media-icon-overlay {
+	position: relative;
+}
+
+.thumbwiz_warning {
+	color: #d63638;
+}
+
+.thumbwiz_50_width {
+	max-width: 50px;
+}
+
+.attachment-preview.type-video .thumbnail {
+	z-index: 0;
+}
+
+.media-modal .mejs-poster, .media-modal .mejs-overlay { /*prevents thumbnail overflow in Firefox */
+	max-width: 100%;
+}
