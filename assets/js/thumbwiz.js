@@ -31,6 +31,13 @@ function thumbwiz_admin_page_ready() {
 									) {
 										wp.media.featuredImage.set( thumb_id );
 									}
+									if ( jQuery('#attachments-' + attributes.id + '-thumbwiz-poster').val() === '' ) {
+										jQuery('#attachments-' + attributes.id + '-thumbwiz-thumbtime').val('');
+										jQuery('#attachments-' + attributes.id + '-thumbwiz-numberofthumbs').val(4);
+										jQuery('#attachments-' + attributes.id + '-thumbnailplaceholder').empty();
+										wp.media.featuredImage.remove();
+
+									}
 								}
 							}
 						);
@@ -774,20 +781,21 @@ function thumbwiz_thumb_video_manual(postID) {
 }
 
 function thumbwiz_cancel_thumbs(postID) {
-	var thumbnailplaceholderid = "#attachments-" + postID + "-thumbnailplaceholder";
-	var thumbnailboxoverlayID  = "#attachments-" + postID + "-thumbwiz-thumbnailboxoverlay";
-	var cancelthumbdivID       = '#attachments-' + postID + '-thumbwiz-cancelthumbsdiv';
-	var thumbnailTimeout     = jQuery( thumbnailplaceholderid ).data( "thumbnailTimeouts" );
+
+		var thumbnailplaceholderid = "#attachments-" + postID + "-thumbnailplaceholder";
+		var thumbnailboxoverlayID  = "#attachments-" + postID + "-thumbwiz-thumbnailboxoverlay";
+		var cancelthumbdivID       = '#attachments-' + postID + '-thumbwiz-cancelthumbsdiv';
+		var thumbnailTimeout     = jQuery( thumbnailplaceholderid ).data( "thumbnailTimeouts" );
 
 	for ( key in thumbnailTimeout ) {
-		clearTimeout( thumbnailTimeout[key] );
-	}
+		clearTimeout( thumbnailTimeout[key] ); }
+		jQuery( '#thumb-video-' + postID ).off( 'seeked.thumbwiz' );
+		jQuery( '#thumb-video-' + postID ).data( 'thumbnail_data', [] );
+		jQuery( thumbnailplaceholderid ).data( "thumbnailTimeouts", null );
 
-	jQuery( '#thumb-video-' + postID ).off( 'seeked.thumbwiz' );
-	jQuery( '#thumb-video-' + postID ).data( 'thumbnail_data', [] );
-	jQuery( thumbnailplaceholderid ).data( "thumbnailTimeouts", null );
-	jQuery( thumbnailboxoverlayID ).fadeTo( 2000, 1 );
-	jQuery( cancelthumbdivID ).animate( {opacity: 0, height: 'toggle'}, 500 );
+		jQuery( thumbnailboxoverlayID ).fadeTo( 2000, 1 );
+		jQuery( cancelthumbdivID ).animate( {opacity: 0, height: 'toggle'}, 500 );
+
 }
 
 function thumbwiz_redraw_thumbnail_box(postID) {

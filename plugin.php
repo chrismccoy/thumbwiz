@@ -10,7 +10,7 @@
  * @wordpress-plugin
  * Plugin Name: Thumbwiz
  * Plugin URI: https://github.com/chrismccoy/thumbwiz
- * Description: Makes video thumbnails.
+ * Description: Makes Video Thumbnails Right in the Browser.
  * Version: 0.6
  * Author: Chris McCoy
  * Author URI: https://github.com/chrismccoy
@@ -40,7 +40,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 function thumbwiz_get_options() {
-
 	$options = array(
 		'generate_thumbs'    => 4,
 		'featured'           => true,
@@ -48,12 +47,10 @@ function thumbwiz_get_options() {
 		'poster'             => '',
 		'browser_thumbnails' => true,
 	);
-
 	return $options;
 }
 
 function thumbwiz_get_attachment_meta_defaults() {
-
 	$options        = thumbwiz_get_options();
 	$meta_key_array = array(
 		'actualwidth'     => '',
@@ -227,7 +224,7 @@ function enqueue_thumbwiz_script() {
 				'write_error'     => esc_html__( 'Error: Unable to save thumbnail in Media Library folder. Check uploads folder permissions.' ),
 			)
 		);
-	}
+	}//end if
 }
 
 add_action( 'wp_enqueue_media', 'enqueue_thumbwiz_script' ); // always enqueue scripts if media elements are loaded
@@ -295,6 +292,9 @@ function thumbwiz_fields_to_edit( $form_fields, $post ) {
 			$thumbnail_html = '<div class="thumbwiz_thumbnail_box thumbwiz_chosen_thumbnail_box">' . wp_kses_post( $thumbwiz_postmeta['autothumb-error'] ) . '</div>';
 		} elseif ( ! empty( $thumbnail_url ) ) {
 			$thumbnail_html = '<div class="thumbwiz_thumbnail_box thumbwiz_chosen_thumbnail_box"><img id="thumbnail-' . esc_attr( $post->ID ) . '" width="200" data-thumb_id="' . esc_attr( $thumbnail_id ) . '" data-featuredchanged="' . esc_attr( $thumbwiz_postmeta['featuredchanged'] ) . '" src="' . esc_attr( $thumbnail_url ) . '?' . rand() . '"></div>';
+		} elseif ( empty( $thumbnail_url ) ) {
+			$thumbwiz_postmeta['thumbtime'] = '';
+			$thumbwiz_postmeta['numberofthumbs'] = $options['generate_thumbs'];
 		}
 
 		$choose_from_video_content = '';
@@ -475,7 +475,6 @@ function thumbwiz_video_attachment_fields_to_save( $post, $attachment ) {
 add_filter( 'attachment_fields_to_save', 'thumbwiz_video_attachment_fields_to_save', null, 2 );
 
 function thumbwiz_can_write_direct( $path ) {
-
 	require_once ABSPATH . 'wp-admin/includes/file.php';
 
 	if ( get_filesystem_method( array(), $path, true ) === 'direct' ) {
@@ -489,7 +488,6 @@ function thumbwiz_can_write_direct( $path ) {
 }
 
 function thumbwiz_decode_base64_png( $raw_png, $tmp_posterpath ) {
-
 	$raw_png     = str_replace( 'data:image/png;base64,', '', $raw_png );
 	$raw_png     = str_replace( 'data:image/jpeg;base64,', '', $raw_png );
 	$raw_png     = str_replace( ' ', '+', $raw_png );
@@ -498,10 +496,12 @@ function thumbwiz_decode_base64_png( $raw_png, $tmp_posterpath ) {
 	if ( thumbwiz_can_write_direct( dirname( $tmp_posterpath ) ) ) {
 		global $wp_filesystem;
 		$success = $wp_filesystem->put_contents( $tmp_posterpath, $decoded_png );
+
 		$editor = wp_get_image_editor( $tmp_posterpath );
 		if ( is_wp_error( $editor ) ) {
 			$wp_filesystem->delete( $tmp_posterpath );
 		}
+
 		return $editor;
 	}
 	return false;
@@ -534,9 +534,11 @@ function thumbwiz_schedule_cleanup_generated_files( $arg ) {
 }
 
 function thumbwiz_save_thumb( $post_id, $post_name, $thumb_url, $index = false ) {
+
 	$user_ID = get_current_user_id();
 	$options = thumbwiz_get_options();
 	$uploads = wp_upload_dir();
+
 	$posterfile       = pathinfo( $thumb_url, PATHINFO_BASENAME );
 	$tmp_posterpath   = $uploads['path'] . '/thumb_tmp/' . $posterfile;
 	$final_posterpath = $uploads['path'] . '/' . $posterfile;
@@ -687,6 +689,7 @@ function thumbwiz_save_thumb( $post_id, $post_name, $thumb_url, $index = false )
 }
 
 function thumbwiz_ajax_save_html5_thumb() {
+
 	$thumb_info = array(
 		'thumb_url' => false,
 		'thumb_id'  => false,
@@ -747,7 +750,9 @@ function thumbwiz_ajax_save_html5_thumb() {
 			$thumb_info = thumbwiz_save_thumb( $post_id, $post_name, $thumb_info['thumb_url'], $index );
 
 		}
+
 		thumbwiz_schedule_cleanup_generated_files( 'thumbs' );
+
 	}
 	wp_send_json( $thumb_info );
 }
@@ -755,7 +760,6 @@ function thumbwiz_ajax_save_html5_thumb() {
 add_action( 'wp_ajax_thumbwiz_save_html5_thumb', 'thumbwiz_ajax_save_html5_thumb' );
 
 function thumbwiz_ajax_redraw_thumbnail_box() {
-
 	check_ajax_referer( 'thumbwiz-nonce', 'security' );
 
 	if ( isset( $_POST['post_id'] ) ) {
