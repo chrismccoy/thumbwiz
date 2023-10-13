@@ -39,6 +39,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	define( 'THUMBWIZ_VERSION', '0.6' );
 }
 
+require_once trailingslashit(plugin_dir_path(__FILE__)) . 'inc/updater.php';
+
 function thumbwiz_get_options() {
 	$options = array(
 		'generate_thumbs'    => 4,
