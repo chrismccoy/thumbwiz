@@ -87,8 +87,17 @@ function thumbwiz_admin_page_ready() {
 				url:    jQuery( '#attachment_url' ).val()
 			};
 			thumbwiz_attachment_selected( attributes );
-		}
 
+			jQuery('body').on('mouseup', '#remove-post-thumbnail', function(event) {
+				setTimeout( function() {
+					jQuery('#attachments-' + attributes.id + '-thumbwiz-poster').val('');
+					jQuery('#attachments-' + attributes.id + '-thumbwiz-thumbtime').val('');
+					jQuery('#attachments-' + attributes.id + '-thumbwiz-numberofthumbs').val(4);
+					jQuery('#attachments-' + attributes.id + '-thumbnailplaceholder').empty();
+				}, 100);
+				jQuery(this).trigger('click');
+			});
+		}
 	}
 
 }
