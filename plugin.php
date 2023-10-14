@@ -11,7 +11,7 @@
  * Plugin Name: Thumbwiz
  * Plugin URI: https://github.com/chrismccoy/thumbwiz
  * Description: Makes Video Thumbnails Right in the Browser.
- * Version: 0.7
+ * Version: 0.8
  * Author: Chris McCoy
  * Author URI: https://github.com/chrismccoy
  * Text Domain: thumbwiz
@@ -36,7 +36,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( "Can't load this file directly" );
 } elseif ( ! defined( 'THUMBWIZ_VERSION' ) ) {
-	define( 'THUMBWIZ_VERSION', '0.6' );
+	define( 'THUMBWIZ_VERSION', '0.8' );
 }
 
 require_once trailingslashit(plugin_dir_path(__FILE__)) . 'inc/updater.php';
