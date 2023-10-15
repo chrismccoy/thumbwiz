@@ -1,5 +1,5 @@
 jQuery( thumbwiz_admin_page_ready() );
-thumbwiz_L10n
+
 function thumbwiz_admin_page_ready() {
 
 	if ( typeof pagenow !== 'undefined' ) {
