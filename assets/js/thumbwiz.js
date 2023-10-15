@@ -1,5 +1,5 @@
 jQuery( thumbwiz_admin_page_ready() );
-
+thumbwiz_L10n
 function thumbwiz_admin_page_ready() {
 
 	if ( typeof pagenow !== 'undefined' ) {
@@ -33,7 +33,7 @@ function thumbwiz_admin_page_ready() {
 									}
 									if ( jQuery('#attachments-' + attributes.id + '-thumbwiz-poster').val() === '' ) {
 										jQuery('#attachments-' + attributes.id + '-thumbwiz-thumbtime').val('');
-										jQuery('#attachments-' + attributes.id + '-thumbwiz-numberofthumbs').val(4);
+										jQuery('#attachments-' + attributes.id + '-thumbwiz-numberofthumbs').val(thumbwiz_L10n.generate_thumbs);
 										jQuery('#attachments-' + attributes.id + '-thumbnailplaceholder').empty();
 										wp.media.featuredImage.remove();
 
@@ -92,7 +92,7 @@ function thumbwiz_admin_page_ready() {
 				setTimeout( function() {
 					jQuery('#attachments-' + attributes.id + '-thumbwiz-poster').val('');
 					jQuery('#attachments-' + attributes.id + '-thumbwiz-thumbtime').val('');
-					jQuery('#attachments-' + attributes.id + '-thumbwiz-numberofthumbs').val(4);
+					jQuery('#attachments-' + attributes.id + '-thumbwiz-numberofthumbs').val(thumbwiz_L10n.generate_thumbs);
 					jQuery('#attachments-' + attributes.id + '-thumbnailplaceholder').empty();
 				}, 100);
 				jQuery(this).trigger('click');

@@ -11,7 +11,7 @@
  * Plugin Name: Thumbwiz
  * Plugin URI: https://github.com/chrismccoy/thumbwiz
  * Description: Makes Video Thumbnails Right in the Browser.
- * Version: 0.8
+ * Version: 0.9
  * Author: Chris McCoy
  * Author URI: https://github.com/chrismccoy
  * Text Domain: thumbwiz
@@ -36,14 +36,18 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die( "Can't load this file directly" );
 } elseif ( ! defined( 'THUMBWIZ_VERSION' ) ) {
-	define( 'THUMBWIZ_VERSION', '0.8' );
+	define( 'THUMBWIZ_VERSION', '0.9' );
 }
 
 require_once trailingslashit(plugin_dir_path(__FILE__)) . 'inc/updater.php';
+require_once trailingslashit(plugin_dir_path(__FILE__)) . 'inc/class.settings-api.php';
+require_once trailingslashit(plugin_dir_path(__FILE__)) . 'inc/thumbwiz-settings.php';
+
+new Thumbwiz_Settings();
 
 function thumbwiz_get_options() {
 	$options = array(
-		'generate_thumbs'    => 4,
+		'generate_thumbs'    => thumbwiz_get_thumbs_option(),
 		'featured'           => true,
 		'thumb_parent'       => 'video',
 		'poster'             => '',
@@ -224,6 +228,7 @@ function enqueue_thumbwiz_script() {
 				'choosethumbnail' => esc_html__( 'Choose Thumbnail:', 'thumbwiz' ),
 				'saving'          => esc_html__( 'Saving...', 'thumbwiz' ),
 				'write_error'     => esc_html__( 'Error: Unable to save thumbnail in Media Library folder. Check uploads folder permissions.' ),
+				'generate_thumbs'  => thumbwiz_get_thumbs_option(),
 			)
 		);
 	}//end if
