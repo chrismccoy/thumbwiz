@@ -86,10 +86,7 @@ if (!class_exists('Thumb_Wiz')) {
         }
         
         public function admin_menu() {
-            add_options_page('Thumbwiz', 'Thumbwiz', 'delete_posts', 'thumbwiz_settings', array(
-                $this,
-                'plugin_page'
-            ));
+            add_options_page('Thumbwiz', 'Thumbwiz', 'delete_posts', 'thumbwiz_settings', array($this, 'plugin_page'));
         }
         
         public function get_settings_sections() {
