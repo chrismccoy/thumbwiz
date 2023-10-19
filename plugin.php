@@ -35,8 +35,6 @@
 
 if (!defined('ABSPATH')) {
     die("Can't load this file directly");
-} elseif (!defined('THUMBWIZ_VERSION')) {
-    define('THUMBWIZ_VERSION', '0.9');
 }
 
 require_once trailingslashit(plugin_dir_path(__FILE__)) . 'inc/updater.php';
@@ -64,6 +62,7 @@ if (!class_exists('Thumb_Wiz')) {
     class Thumb_Wiz {
 
         private $settings_api;
+	private $thumbwiz_version = '1.0';
 
         public function __construct() {
 
@@ -293,8 +292,8 @@ if (!class_exists('Thumb_Wiz')) {
 
                 wp_enqueue_script('thumbwiz', plugins_url('/assets/js/thumbwiz.js', __FILE__), array(
                     'jquery'
-                ), THUMBWIZ_VERSION, true);
-                wp_enqueue_style('thumbwiz_styles', plugins_url('/assets/css/thumbwiz.css', __FILE__), '', THUMBWIZ_VERSION);
+                ), $this->thumbwiz_version, true);
+                wp_enqueue_style('thumbwiz_styles', plugins_url('/assets/css/thumbwiz.css', __FILE__), '', $this->thumbwiz_version);
 
                 wp_localize_script('thumbwiz', 'thumbwiz_L10n', array(
                     'hidevideo' => esc_html__('Hide video...', 'thumbwiz'),
