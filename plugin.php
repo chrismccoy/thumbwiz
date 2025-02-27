@@ -4,7 +4,7 @@
  *
  * @package           Thumbwiz
  * @author            Chris McCoy
- * @copyright         2023 Chris McCoy
+ * @copyright         2025 Chris McCoy
  * @license           GPL-2.0-or-later
  *
  * @wordpress-plugin
@@ -37,7 +37,6 @@ if (!defined('ABSPATH')) {
     die("Can't load this file directly");
 }
 
-require_once trailingslashit(plugin_dir_path(__FILE__)) . 'inc/updater.php';
 require_once trailingslashit(plugin_dir_path(__FILE__)) . 'inc/class.settings-api.php';
 
 /**
